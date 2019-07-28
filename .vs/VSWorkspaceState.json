@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\config",
+    "\\src\\controller",
+    "\\src\\middleware",
+    "\\src\\models"
+  ],
+  "SelectedNode": "\\src\\controller\\user-controller.js",
+  "PreviewInSolutionExplorer": false
+}
