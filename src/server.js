@@ -4,10 +4,11 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/config');
 const cors= require('cors');
+const nodemailer = require("nodemailer");
 const port = process.env.PORT || 5000; 
 
 const app = express();
-
+const routes = require('./routes');
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -20,10 +21,10 @@ passport.use(passportMiddleware);
  
 // Demo Route (GET http://localhost:5000)
 app.get('/', function(req, res) {
-  return res.send('Hello! The API is at http://103.77.137.81:' + port + '/api');
+  return res.send('Hello! The API is at http://192.168.0.7:' + port + '/api');
 });
 
-const routes = require('./routes');
+
 app.use('/api', routes);
 
 mongoose.connect(config.db, { useNewUrlParser: true , useCreateIndex: true});
@@ -41,4 +42,4 @@ connection.on('error', (err) => {
  
 // Start the server
 app.listen(port);
-console.log('There will be dragons: http://103.77.137.81:' + port);
+console.log('There will be dragons: http://192.168.0.7:' + port);
