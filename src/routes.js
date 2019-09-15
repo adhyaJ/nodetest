@@ -2,7 +2,7 @@ const express = require('express'),
 routes = express.Router();
 const userController = require('./controller/user-controller');
 const eventController = require('./controller/event-controller');
-const emailController = require('./controller/email-controller');
+const passController = require('./controller/passController');
 const passport = require('passport');
 const nodemailer = require("nodemailer");
 
@@ -12,7 +12,8 @@ routes.get('/', (req, res) => {
 
 routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
-
+routes.post('/forget-password',passController.forgotPassword);
+routes.post('/reset-password',passController.resetPassword);
 routes.post('/event', eventController.createEvent);
 
 
@@ -23,7 +24,7 @@ const smtpTransport = nodemailer.createTransport({
     host: "smtp.gmail.com",
     auth: {
         user: "adhaya.jain@gmail.com",
-        pass: "soopy@adhya"
+        pass: "adhyaJ@1604"
     }
 });
 /*------------------Routing Started ------------------------*/
@@ -32,7 +33,7 @@ routes.post('/send',function(req,res){
         from: req.body.from,
         to : req.body.to,
         subject : req.body.subject,
-        text : req.body.text
+        text : 'Check out this link and respond! http://ec2-18-220-116-185.us-east-2.compute.amazonaws.com'
     }
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){
@@ -50,6 +51,5 @@ routes.post('/send',function(req,res){
 });
 });
 /*--------------------Routing Over----------------------------*/
-
 
 module.exports = routes;
